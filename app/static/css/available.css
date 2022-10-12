@@ -1,0 +1,12 @@
+*{
+    box-sizing: border-box;
+}
+div{
+    background-color: blue;
+    text-align: center;
+    
+}
+.image{
+    width: 50%;
+    height: 50%;
+}

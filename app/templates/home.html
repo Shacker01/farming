@@ -1,0 +1,28 @@
+
+{% extends 'base.html' %}
+{% block content %}
+    <span class="slicknav_icon-bar"></span>
+    <span class="slicknav_icon-bar"></span>
+    <span class="slicknav_icon-bar"></span>
+        <div class="heading">
+            <h2><b>RICE FARMING MANAGEMENT SYSTEM</b></h2>
+        </div>
+        <div class="account">
+            <a href="{% url 'register' %}">Sign Up</a><br><br>
+        </div>
+        <div class="login">
+            <a href="{% url 'login' %}">Log In</a>
+        </div>
+    <br><br>
+    <br><br>
+    <header>
+        <a href="{% url 'farm' %}">Farm</a> &nbsp;&nbsp;
+        <a href="{% url 'available' %}">Availability</a>&nbsp;&nbsp;
+        <a href="{% url 'department' %}">Departments</a> &nbsp;&nbsp;
+        <a href="{% url 'aboutUs' %}">About Us</a>&nbsp;&nbsp;
+        <a href="{% url 'contactUs' %}">Contact Us</a>
+    </header>
+        <div class="img-container">
+            <img src="static/images/world.jpg">
+        </div>
+{% endblock content %}

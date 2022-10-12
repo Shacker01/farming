@@ -1,0 +1,23 @@
+*{
+    box-sizing: border-box;
+
+}
+body, html{
+    background-color: deepskyblue;
+    padding: 0%;
+    margin: 0%;
+}
+#form{
+    text-align: center;
+    background-color: chartreuse;
+    width: 50%;
+    height: 50%;
+    padding: 5%;
+    margin: 0 auto;
+    border-radius: 20px;
+    margin-bottom: 50%;
+}
+.message{
+    background-color: red;
+    color: white;
+}

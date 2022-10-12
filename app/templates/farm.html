@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/farm.css' %}">
+    <title>Farm</title>
+</head>     
+<body>
+    <div>
+        <a href="#">Farm</a> &nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="{% url 'available' %}">Available Stock</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#">Packing</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#">Food Safety</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="{% url 'contactUs' %}">Contact</a>
+    </div>
+
+
+    <div class="image">
+        <img src="{% static 'images/world.jpg' %}">
+    </div>
+</body>
+</html>
