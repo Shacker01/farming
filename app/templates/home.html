@@ -1,28 +1,68 @@
-
-{% extends 'base.html' %}
-{% block content %}
-    <span class="slicknav_icon-bar"></span>
-    <span class="slicknav_icon-bar"></span>
-    <span class="slicknav_icon-bar"></span>
-        <div class="heading">
-            <h2><b>RICE FARMING MANAGEMENT SYSTEM</b></h2>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+    <title>app_rice</title>
+</head>
+<body>
+    <div class="heading">
+        <h2><marquee><strong>RICE FARMING MANAGEMENT SYSTEM</strong></marquee></h2>
+    </div>
+    <div class="body">
+        <header id="header">
+            <!-- <i class="material-icons">Dashboard</i> -->
+            <h3>Dashboard</h3>
+            <a href="{% url 'farm' %}">Farm</a><br><br>
+            <a href="{% url 'available' %}">Products On Sale</a><br><br>
+            <a href="{% url 'department' %}">Departments</a><br><br>
+            <a href="{% url 'aboutUs' %}">About Us</a><br><br>
+            <a href="{% url 'contactUs' %}">Contact Us</a><br><br>
+            <a href="">FAQ</a><br><br>
+            <a href="">Privacy & Policy</a><br><br>
+            <a href="">Terms & Conditions</a>
+        </header>
+        
+            <div class="image">
+                <div class="image-content">
+                    <div class="logout"></div>
+                        <img src="{% static 'images/world.jpg' %}">
+                        <h1><strong>Welcome to our Rice Farm Site</strong></h1>
+                        <b>farm/buy with us.</b>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div> 
+    <fieldset> 
+    <div class="loop">
+        {% for products in product reversed %}
+        <div class="image_card">
+            <div class="card">
+                <img src="{{ products.Product_Image.url }}">&nbsp;&nbsp;&nbsp;
+                Product_name: {{ products.Product_name }}&nbsp;&nbsp;&nbsp;<br>
+                Location: {{ products.location  }}&nbsp;&nbsp;&nbsp;<br>
+                Phone_no: {{ products.phone_no }}<br>
+                <br>
+                <script type="text/javascript">
+                    function myFunction() {
+                        document.write("{{ Products.number }}");
+                    }
+                </script>
+                <button onclick="myFunc()">Call Seller</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="{% url 'available' %}">Products on Sale</a>
+            </div>
         </div>
-        <div class="account">
-            <a href="{% url 'register' %}">Sign Up</a><br><br>
+        {% endfor %}
+        <div class="footer">
+            <strong>&copy;Copyright reserved &nbsp;@steveShacker&nbsp;2022</strong><br>
         </div>
-        <div class="login">
-            <a href="{% url 'login' %}">Log In</a>
-        </div>
-    <br><br>
-    <br><br>
-    <header>
-        <a href="{% url 'farm' %}">Farm</a> &nbsp;&nbsp;
-        <a href="{% url 'available' %}">Availability</a>&nbsp;&nbsp;
-        <a href="{% url 'department' %}">Departments</a> &nbsp;&nbsp;
-        <a href="{% url 'aboutUs' %}">About Us</a>&nbsp;&nbsp;
-        <a href="{% url 'contactUs' %}">Contact Us</a>
-    </header>
-        <div class="img-container">
-            <img src="static/images/world.jpg">
-        </div>
-{% endblock content %}
+    </div>
+</fieldset>
+</body>
+</html>

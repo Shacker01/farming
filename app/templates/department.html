@@ -6,10 +6,58 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/dpartment.css' %}">
-    <title>Document</title>
+    <title>app_rice</title>
 </head>
 <body>
-    <a href="{% url 'cultivation' %}">Cultivation</a>
-    <a href="{% url 'treatment' %}">Treatment/Medicines</a>
+    
+
+    <table>
+        <thead>
+            <tr>
+                <th><a href="{% url 'cultivation' %}">Plants Management</a></th>
+                <th><a href="#">Treatment Management</a></th>
+                <th><a href="#">Medicine Management</a></th>
+                <th> <a href="#">Farmers Management</a></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    We’ll be using SSH to build and control a remote spying Raspberry Pi. If you’re not
+                    already familiar with it, the Raspberry Pi is a tiny but powerful, credit card–sized
+                    computer that works great as a remote spying tool. We will employ a Raspberry Pi with
+                    a camera module to use as a remote spying device. You can purchase a Raspberry Pi at
+                    nearly any electronics retailer, including Amazon, for less than $50, and you can get the
+                    camera module for about $15.
+                </td>
+                <td>
+                    The IP address of my Pi is 192.168.1.101, but make certain you are using the IP address
+                    of your Raspberry Spy Pi wherever my address appears in this chapter. Now, from your
+                    Kali system, you should be able to connect directly to and control your Raspberry Spy
+                    Pi and use it as a remote spying system. In this simple example, your system will need
+                    to be on the same network as the Pi.
+                    <img src="{% static 'images/pure.jpg' %}">
+
+                    For help or to get Treatment for your plants click <a href="{% url 'treatment' %}">here</a>
+                </td>
+                <td>
+                    <img src ="{% static 'images/pure.jpg' %}">
+                    The IP address of my Pi is 192.168.1.101, but make certain you are using the IP address
+                    of your Raspberry Spy Pi wherever my address appears in this chapter. Now, from your
+                    Kali system, you should be able to connect directly to and control your Raspberry Spy
+                    Pi and use it as a remote spying system. In this simple example, your system will need
+                    to be on the same network as the Pi.
+                </td>
+                <td>
+                    The IP address of my Pi is 192.168.1.101, but make certain you are using the IP address
+                    of your Raspberry Spy Pi wherever my address appears in this chapter. Now, from your
+                    Kali system, you should be able to connect directly to and control your Raspberry Spy
+                    Pi and use it as a remote spying system. In this simple example, your system will need
+                    to be on the same network as the Pi.
+                    Are You a Rice? Create an Account <a href="{% url 'farmers' %}">here</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>

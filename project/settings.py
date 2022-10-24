@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app', 
+    'app',
 ]
 
 MIDDLEWARE = [
@@ -125,4 +125,12 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'app/static'),
  ]
 
+LOGIN_REDIRECT_URL = 'home'
+LOGIN_URL ='login'
+
+DEFAULT_AUTO_FIELD='django.db.models.AutoField' 
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 

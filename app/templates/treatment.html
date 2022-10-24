@@ -14,5 +14,10 @@
     <div class="button">
         <a href="{% url 'home' %}">Back Home</a>
     </div>
+    <form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button>Submit</button>
+    </form>
 </body>
 </html>

@@ -2,17 +2,19 @@
     box-sizing: border-box;
 }
 body, html{
+    background-color: green;
     margin: 0%;
     padding: 0%;
 }
 form{
     text-align: center;
     background-color: chartreuse;
-    width: 50%;
-    height: 50%;
+    width: fit-content;
+    height: auto;
     padding: 5%;
     margin: 0% auto;
 }
+
 .message{
     background-color: red;
     color: white;
