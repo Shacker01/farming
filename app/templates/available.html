@@ -6,31 +6,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/available.css' %}">
-    <title>Document</title>
+    <title>products_on_sale</title>
 </head>
 <body>
-
+<div class="header">
     <h1>Welcome to our Store!! <b>Make a choice of your favourite.</b></h1>
-    <table>
-        <thead>
-            <tr>
-                <td><img src="{% static 'images/ricec.jpg' %}"></td>
-                <td><img src="{% static 'images/pure.jpg' %}"></td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><p>To make an order, click the button below</p></td>
-                <td><p>To make an order, click the button below</p></td>
-            </tr>
-        </tbody>
-        <tfoot>
-            <tr>
-                <td><a href="{% url 'product' %}">Order </a></td>
-                <td><a href="">Order </a></td>
-            </tr>
-        </tfoot>
-    </table>
-    
+</div>
+<div class="back">
+    <a href="{% url 'home' %}">Back Home</a>
+</div>
+    <fieldset> 
+        <p><strong>Items On Sell</strong></p>
+        <div class="loop">
+            {% for products in product reversed %}
+            <div class="image_card">
+                <div class="card">
+                    <img src="{{ products.Product_Image.url }}">&nbsp;&nbsp;&nbsp;
+                    Product_name: {{ products.Product_name }}&nbsp;&nbsp;&nbsp;<br>
+                    Location: {{ products.location  }}&nbsp;&nbsp;&nbsp;<br>
+                    Username: {{ products.Username }}&nbsp;&nbsp;&nbsp;<br>
+                    Phone_no: {{ products.phone_no }}<br>
+                    <br>
+                    <a href="tel:{{products.phone_no}}" >Contact Seller:</a>
+                    <br>        
+                </div>
+            </div>
+            {% endfor %}
+           
+        </div>
+    </fieldset>  
+    <footer>
+        <h2> Have a Product to Sale? Upload it<a href="{% url 'product' %}"> Here.</a></h2>
+    </footer>
 </body>
 </html>

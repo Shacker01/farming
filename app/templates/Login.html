@@ -14,8 +14,8 @@
         <form action="" method="POST">
             {% csrf_token %}
             <h1>Log In Page</h1>
-            <input type="text" name="Username" placeholder="Username"><br><br>
-            <input type="password" name="Password1" placeholder="Password"><br><br>
+            <input type="text" name="username" placeholder="Username"><br><br>
+            <input type="password" name="password1" placeholder="Password"><br><br>
             <button type="submit">Log In</button><br><br>
             Not yet a member <a class="ml-2" href="{% url 'register' %}">Sign Up</a>
             {% for message in messages %}

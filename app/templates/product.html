@@ -9,32 +9,13 @@
     <title>product_upload</title>
 </head>
 <body>
-    <div class="loop">
-        {% for products in product reversed %}
-        <div class="image_card">
-            <div class="card">
-                <img src="{{ products.Product_Image.url }}">&nbsp;&nbsp;&nbsp;
-                Product_name: {{ products.Product_name }}&nbsp;&nbsp;&nbsp;<br>
-                Location: {{ products.location  }}&nbsp;&nbsp;&nbsp;<br>
-                Phone_no: {{ products.phone_no }}<br>
-                <br>
-                <script type="text/javascript">
-                    function myFunction() {
-                        document.write("{{ Products.number }}");
-                    }
-                </script>
-                <button onclick="myFunc()">Call Seller</button>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="{% url 'available' %}">Products on Sale</a>
-            </div>
-        </div>
-        {% endfor %}
-
-    <h1>Have a Product to Sale! Upload it here</h1>
-    <form action="" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{form.as_p}}
+    <div class="upload">
+        <h1>Welcome! Feel free to Upload your Product from Here.</h1>
+    </div>
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.as_p}}
         <button>Submit</button>
-    </form>
+        </form>
 </body>
 </html>

@@ -4,10 +4,9 @@ from . import views
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import auth, User
 from django.contrib import messages
-# from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Client
-from .models import Treatment, Farmer, Products
-from .forms import TreatmentForm, FarmerForm, ProductsForm
+from .models import Clients
+from .models import Treatment, Farmers, Products, Medicines
+from .forms import TreatmentForm, FarmersForm, ProductsForm, MedicinesForm
 
 
 
@@ -20,26 +19,27 @@ def home(request):
     context['product'] = Products.objects.all()
     return render(request, 'home.html', context)
 
-
-
+# account creation, login, logout, delete user account
 def register(request):
     if request.method == 'POST':
-        First_name = request.POST['First_name']
-        Last_name = request.POST['Last_name']
-        Username = request.POST['Username']
-        Email = request.POST['Email']
-        Password1 = request.POST['Password1']
-        Password2 = request.POST['Password2']
-        if Password1 == Password2:
-            if Client.objects.filter(Username=Username).exists():
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        username = request.POST['username']
+        email = request.POST['email']
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']
+        if password1 == password2:
+            if Clients.objects.filter(username=username).exists():
                 messages.error(request, 'Username taken')
                 return redirect('register')
-            elif Client.objects.filter(Email=Email).exists():
+            elif Clients.objects.filter(email=email).exists():
                 messages.error(request, 'Email exist')
                 return redirect('register')
 
             else:
-                user = User.objects.create_user(first_name=First_name, last_name=Last_name, username= Username, password=Password1)
+                client = Clients.objects.create(first_name=first_name, last_name=last_name, username=username)
+                client.save()
+                user = User.objects.create_user(first_name=first_name, last_name=last_name, username=username, email=email, password=password1)
                 user.save()
                 messages.info(request,'user created')
                 return redirect('login')
@@ -53,9 +53,9 @@ def register(request):
 
 def Login(request):
     if request.method=='POST':
-        Username = request.POST['Username']
-        Password1 = request.POST['Password1']
-        user = auth.authenticate(username=Username,password=Password1)
+        username = request.POST['username']
+        password1 = request.POST['password1']
+        user = auth.authenticate(username=username,password=password1)
 
         if user is not None:
             auth.login(request, user)
@@ -68,19 +68,35 @@ def Login(request):
     else:
 
         return render(request, 'Login.html')
-
+    
+    
+def logout(request):
+    auth.logout(request)
+    return redirect('/')
+    
+    
+def del_user(request, pk):
+    client = User.objects.get(id=pk)
+    client = Clients.objects.get(id=pk)
+    if request.method == 'POST':
+        client.delete()
+        return redirect('/')
+    context = {'client':client}
+    return render(request, 'del_user.html', context)
 
 
 def Farm(request):
     return render(request, 'farm.html')
 
-
+# Items uploaded for sell
 def Availability(request):
-    return render(request, 'available.html')
+    context = {}
+    context['product'] = Products.objects.all()
+    return render(request, 'available.html', context) 
+
 
 def Department(request):
     return render(request, 'department.html')
-
 
 def Cultivation(request):
     return render(request, 'cultivation.html')
@@ -97,55 +113,65 @@ def Treatment(request):
     form = TreatmentForm()            
     return render(request, 'treatment.html', {'form':form})
 
-
 def ContactUs(request):
     return render(request, 'contactUs.html')
 
 def AboutUs(request):
     return render(request, 'aboutUs.html')
 
+def FAQS(request):
+    return render(request, 'faqs.html')
 
-def logout(request):
-    auth.logout(request)
-    return redirect('/')
+def Answers(request):
+    return render(request, 'answers.html')
+
+def Privacy(request):
+    return render(request, 'privacy.html')
 
 
-def Farmer(request):
+def Farmers(request):
     if request.method == 'POST':
-        form = FarmerForm(request.POST, request.FILES)
+        form = FarmersForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             image_obj = form.instance
 
         else:
-            form = FarmerForm()
-    form = FarmerForm()            
+            form = FarmersForm()
+    form = FarmersForm()            
     return render(request, 'farmers.html', {'form':form})
 
+@login_required(login_url = 'login')
 def Product(request):
-    if request.method== 'POST':
+    if request.method == 'POST':
         form = ProductsForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             image_obj = form.instance
-            return redirect("product")
+            return redirect("available")
 
         else:
             form = ProductsForm()
     form = ProductsForm()
     return render(request, 'product.html', {'form':form})
 
-# def simple_upload(request):
-#     if request.method == 'POST' and request.FILES['myfile']:
-#         myfile = request.FILES['myfile']
-#         fs = FileSystemStorage()
-#         filename = fs.save(myfile.name, myfile)
-#         uploaded_file_url = fs.url(filename)
-#         return render(request, 'files.html')
-
-# class Product(LoginRequiredMixin,CreateView):
-#     model = Product
-#     login_url = 'login'
-#     form_class = ProductForm
-#     template_name = 'app/templates/pro_upload.html'
-#     success_url = reverse_lazy('product.html')
+def Medicines(request):
+    form = MedicinesForm()
+    if request.method == 'POST':
+        form = MedicinesForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            image_obj = form.instance
+            return redirect('department')
+        else:
+            form = MedicinesForm()
+    # form = MedicinesForm()
+    # return render(request, 'medicine.html', {'form':form})    
+    context = {'form':form,}
+    return render(request, 'updateDrugs.html', context)
+    
+def UpdateDrugs(request):
+    context = {}
+    context['medicine'] = Medicines.objects.all()
+    return render(request, 'medicine.html', context) 
+    

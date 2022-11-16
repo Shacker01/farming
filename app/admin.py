@@ -1,19 +1,23 @@
 from django.contrib import admin
-from .models import Client
-from .models import Treatment, Farmer, Products
+from .models import Clients
+from .models import Treatment, Farmers, Products, Medicines
 
 @admin.register(Treatment)
 class TreatmentTable(admin.ModelAdmin):
     list_display = ['phone_no', 'Description']
 
-@admin.register(Client)
-class ClientTable(admin.ModelAdmin):
-    list_display = ['Username']
+@admin.register(Clients)
+class ClientsTable(admin.ModelAdmin):
+    list_display = ['username']
 
-@admin.register(Farmer)
-class FarmerTable(admin.ModelAdmin):
-    list_display = ['Username', 'phone_no', 'Email']
+@admin.register(Farmers)
+class FarmersTable(admin.ModelAdmin):
+    list_display = ['username', 'phone_no', 'Email']
 
 @admin.register(Products)
 class ProductsTable(admin.ModelAdmin):
-    list_display = ['Username', 'phone_no', 'Product_name']
+    list_display = ['username', 'phone_no', 'Product_name', 'location']
+    
+@admin.register(Medicines)
+class MedicinesTable(admin.ModelAdmin):
+    list_display = ['name_of_medicine_used', 'types', 'quantity', 'treatmentDate']

@@ -3,19 +3,19 @@
 
 }
 body, html{
-    background-color: deepskyblue;
+    background-color: green;
     padding: 0%;
     margin: 0%;
 }
-#form{
+form{
+    margin-top: 5%;
     text-align: center;
     background-color: chartreuse;
     width: 50%;
     height: 50%;
     padding: 5%;
-    margin: 0 auto;
     border-radius: 20px;
-    margin-bottom: 50%;
+    margin-left: 25%;
 }
 .message{
     background-color: red;
